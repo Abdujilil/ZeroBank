@@ -91,8 +91,8 @@ public class Driver {
                     chromeOptions.addArguments("--ignore-certificate-errors");
                     chromeOptions.setCapability("platform", Platform.ANY);
                     try {
-//                        URL url = new URL("http://localhost:4444/wd/hub");
-                        driverThreadLocal.set(new RemoteWebDriver(new URL("http://34.204.186.21:4444/wd/hub"), chromeOptions));
+                        URL url = new URL("http://34.229.119.211:4444/wd/hub");
+                        driverThreadLocal.set(new RemoteWebDriver(url, chromeOptions));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
