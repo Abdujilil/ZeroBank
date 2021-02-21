@@ -73,7 +73,7 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <parallel>methods</parallel>
-                    <threadCount>6</threadCount>
+                    <threadCount>4</threadCount>
                     <perCoreThreadCount>false</perCoreThreadCount>
 <!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
                     <testFailureIgnore>true</testFailureIgnore>
