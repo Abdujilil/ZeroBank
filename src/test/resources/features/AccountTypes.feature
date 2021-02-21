@@ -6,7 +6,7 @@ Feature: Account Summary account types
 
   Scenario: Account summary page title
     Then the page title should be "Zero - Account Summary"
-
+@smoke
   Scenario: Displayed account types
     Then the user should see following account types
       | Cash Accounts       |

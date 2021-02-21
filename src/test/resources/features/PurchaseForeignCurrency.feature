@@ -25,7 +25,7 @@ Feature: Purchase Foreign Currency
   Scenario: Error message for not selecting currency
     And user tries to calculate cost without selecting a currency
     Then error message should be displayed
-  @smoke
+
   Scenario: Error message for not entering amount
     And user tries to calculate cost without entering an amount
     Then error message should be displayed

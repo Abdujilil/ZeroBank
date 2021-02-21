@@ -3,7 +3,7 @@ Feature: Navigating to specific accounts in Accounts Activity
 
   Background:
     Given user is logged in
-  @smoke
+
   Scenario Outline: Account redirect
     When the user clicks on "<account>" link on the home page
     Then the page title should be "Zero - Account Activity"

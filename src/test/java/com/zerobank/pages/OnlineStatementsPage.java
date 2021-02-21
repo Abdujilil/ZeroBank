@@ -31,7 +31,7 @@ public class OnlineStatementsPage extends BasePage {
     public void selectFile(String statement) {
         waitForVisibility(statementTable);
         clickElement("//a[.='%s']", statement);
-        sleep(0.25);
+        sleep(0.5);
     }
 
     public boolean isDownloaded(String fileName) {

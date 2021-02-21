@@ -15,7 +15,7 @@ Feature: Statements and Documents details
       | 2011 | 2     |
       | 2012 | 1     |
 
-  @smoke
+
   Scenario Outline: Download statements
     When the user selects the Recent Statements Year "<year>"
     And the user clicks on statement "<statement>"

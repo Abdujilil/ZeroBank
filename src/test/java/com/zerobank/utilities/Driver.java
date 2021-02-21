@@ -2,6 +2,7 @@ package com.zerobank.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -86,9 +87,12 @@ public class Driver {
                     break;
                 case "remote-chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
+//                    chromeOptions.setHeadless(true);
+                    chromeOptions.addArguments("--ignore-certificate-errors");
+                    chromeOptions.setCapability("platform", Platform.ANY);
                     try {
-                        URL url = new URL("http://3.90.57.8:4444/wd/hub");
-                        driverThreadLocal.set(new RemoteWebDriver(url, chromeOptions));
+//                        URL url = new URL("http://localhost:4444/wd/hub");
+                        driverThreadLocal.set(new RemoteWebDriver(new URL("http://localhost:4446/wd/hub"), chromeOptions));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
