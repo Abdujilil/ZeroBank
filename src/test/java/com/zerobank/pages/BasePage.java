@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static com.zerobank.utilities.BrowserUtils.*;
 
-public abstract class BasePage extends LoginBasePage {
+public abstract class BasePage {
 
     public BasePage() {
         PageFactory.initElements(Driver.get(), this);

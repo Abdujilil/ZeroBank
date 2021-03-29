@@ -192,6 +192,11 @@ public class BrowserUtils {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitUntilNewWindowOpens(int numberOfWindows) {
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 5);
+//        wait.until(File.Exists())
+    }
+
     public static void hoverOver(String xpath) {
         Actions act = new Actions(Driver.get());
         act.moveToElement(Driver.get().findElement(By.xpath(xpath))).perform();

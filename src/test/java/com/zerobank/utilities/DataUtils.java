@@ -14,28 +14,6 @@ import java.util.stream.Collectors;
 public class DataUtils {
 
     private static Faker faker = new Faker();
-    private static Map<String, String> mappy = new HashMap<>();
-
-    public static void setDataAsMapp(String fileName) {
-        File file = new File(String.format("src/test/resources/%s.csv", fileName));
-        try {
-            Scanner scan = new Scanner(file);
-            while (scan.hasNext()) {
-                String[] arr = scan.nextLine().split(",");
-                mappy.put(arr[0], arr[1]);
-            }
-            scan.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("COULD NOT READ FILE");
-        }
-    }
-
-    public static Map.Entry<String, String> getTestData(String fileName) {
-        setDataAsMapp(fileName);
-        return mappy.entrySet().stream()
-                .collect(Collectors.toList())
-                .get(new Random().nextInt(mappy.size()));
-    }
 
     public static String generatesRandomEmail() {
         return faker.internet().emailAddress();

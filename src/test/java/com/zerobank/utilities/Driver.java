@@ -31,18 +31,26 @@ public class Driver {
         if (driverThreadLocal.get() == null) {
 
             String browser = ConfigurationReader.get("browser");
+            String downloadFilepath = System.getProperty("user.dir") + "\\src\\test\\resources\\downloads";// directory download
+            GlobalDataUtils.setDownloadPath(downloadFilepath);
+            HashMap<String, Object> prefs = new HashMap<>();
+            DesiredCapabilities cap = new DesiredCapabilities();
             switch (browser) {
                 case "chrome":
-                    WebDriverManager.chromedriver().browserVersion("88").setup();
+                    WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions().addArguments("--ignore-certificate-errors");
+                    prefs.put("profile.default_content_settings.popups", 0);
+                    prefs.put("download.default_directory", downloadFilepath);
+                    prefs.put("download.prompt_for_download", false);
+                    options.setExperimentalOption("prefs", prefs);
+                    cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+                    cap.setCapability(ChromeOptions.CAPABILITY, options);
                     driverThreadLocal.set(new ChromeDriver(options));
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions optionsHL = new ChromeOptions().addArguments("--ignore-certificate-errors");
                     optionsHL.setHeadless(true);
-                    String downloadFilepath = "C:\\Users\\Duke\\Downloads"; // directory download
-                    HashMap<String, Object> prefs = new HashMap<>();
                     prefs.put("download.default_directory", downloadFilepath);
                     prefs.put("download.prompt_for_download", false);
                     optionsHL.addArguments("--disable-gpu");
@@ -50,7 +58,6 @@ public class Driver {
                     optionsHL.addArguments("--disable-infobars");
                     optionsHL.addArguments("--disable-notifications");
                     optionsHL.setExperimentalOption("prefs", prefs);
-                    DesiredCapabilities cap = new DesiredCapabilities();
                     cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
                     cap.setCapability(ChromeOptions.CAPABILITY, optionsHL);
                     driverThreadLocal.set(new ChromeDriver(optionsHL));
@@ -87,12 +94,18 @@ public class Driver {
                     break;
                 case "remote-chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
-//                    chromeOptions.setHeadless(true);
+                    downloadFilepath = "/home/seluser/Downloads";
                     chromeOptions.addArguments("--ignore-certificate-errors");
+                    prefs.put("download.default_directory", downloadFilepath);
+                    prefs.put("download.prompt_for_download", false);
+                    chromeOptions.setExperimentalOption("prefs", prefs);
+                    chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+                    chromeOptions.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
                     chromeOptions.setCapability("platform", Platform.ANY);
                     try {
-                        URL url = new URL("http://34.229.119.211:4444/wd/hub");
+                        URL url = new URL("http://localhost:4446/wd/hub");
                         driverThreadLocal.set(new RemoteWebDriver(url, chromeOptions));
+                        driverThreadLocal.get().manage().window().setSize(new Dimension(1900,900));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

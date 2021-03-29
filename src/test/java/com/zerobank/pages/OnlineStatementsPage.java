@@ -1,5 +1,6 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.GlobalDataUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,11 +32,12 @@ public class OnlineStatementsPage extends BasePage {
     public void selectFile(String statement) {
         waitForVisibility(statementTable);
         clickElement("//a[.='%s']", statement);
-        sleep(0.5);
+        GlobalDataUtils.numberOfFilesDownloaded++;
+        waitUntilDownloadComplete();
     }
 
     public boolean isDownloaded(String fileName) {
-        File dir = new File("C:\\Users\\Duke\\Downloads");
+        File dir = new File(GlobalDataUtils.getDownloadPath());
         File[] files = dir.listFiles();
         if (files == null || files.length == 0) {
             return false;
@@ -45,12 +47,27 @@ public class OnlineStatementsPage extends BasePage {
     }
 
     public void deleteDownloadedFile() {
-        File dir = new File("C:\\Users\\Duke\\Downloads");
+        File dir = new File(GlobalDataUtils.getDownloadPath());
         File[] files = dir.listFiles();
         if (files == null || files.length == 0) {
             return;
         }
         Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
         files[0].deleteOnExit();
+    }
+
+    public void waitUntilDownloadComplete() {
+        File dir = new File(GlobalDataUtils.getDownloadPath());
+        File[] files = dir.listFiles();
+        Arrays.sort(files, Comparator.comparingLong(File::lastModified).reversed());
+        while (files.length != GlobalDataUtils.numberOfFilesDownloaded) {
+            files = dir.listFiles();
+        }
+        for (int i = 0; i < files.length; i++) {
+            files = dir.listFiles();
+            if (files[i].getName().contains(".crdownload")) {
+                i--;
+            }
+        }
     }
 }

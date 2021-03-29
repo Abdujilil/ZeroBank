@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"html:target/failed-html-report"},
         features = "@target/rerun.txt",
-        glue = "com/vytrack/step_definitions"
+        glue = "com/zerobank/step_definitions"
 )
 public class FailedTestRunner {
 }
