@@ -1,7 +1,7 @@
 @regression
 Feature: Add new payee under pay bills
 
-  @smoke
+  @smokeTest
   Scenario: Add a new payee
     Given user is logged in
     And user navigates to "Pay Bills"

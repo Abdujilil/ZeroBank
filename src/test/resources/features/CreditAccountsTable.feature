@@ -1,4 +1,4 @@
-@regression @smoke
+@regression @smokeTest
 Feature: Account Summary Credit Accounts table
 
   Scenario: Credit accounts table

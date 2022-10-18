@@ -7,7 +7,7 @@ Feature: Account Activity account dropdown
 
   Scenario: Account activity page title
     Then the page title should be "Zero - Account Activity"
-@smoke
+@smokeTest
   Scenario: Account dropdown default option
     Then the Account dropdown selected option should be "Savings"
 

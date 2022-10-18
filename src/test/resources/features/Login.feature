@@ -1,4 +1,4 @@
-@login @regression @smoke
+@login @regression @smokeTest
 Feature: User login
 
   Background:

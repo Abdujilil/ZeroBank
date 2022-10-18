@@ -6,7 +6,7 @@ Feature: Purchase Foreign Currency
     And user navigates to "Pay Bills"
     When user accesses the "Purchase Foreign Currency" tab
 
-  @smoke
+  @smokeTest
   Scenario: Available currencies
     Then following currencies should be available
       | Australia (dollar)    |

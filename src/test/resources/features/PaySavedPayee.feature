@@ -8,7 +8,7 @@ Feature: Pay bills
   Scenario: Pay bills page title
     Then the page title should be "Zero - Pay Bills"
 
-  @smoke
+  @smokeTest
   Scenario:  Valid pay operations
     And the user enters "Apple" "Checking" "100" "2021-02-17"
     Then "The payment was successfully submitted." alert message should be displayed
