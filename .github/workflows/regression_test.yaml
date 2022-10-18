@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
-          java-version: '1.8'
+          java-version: '8'
       - name: Build with Maven
         run: mvn clean test -Dcucumber.options="--tag @regression"
       - uses: deblockt/cucumber-report-annotations-action@v1.7
